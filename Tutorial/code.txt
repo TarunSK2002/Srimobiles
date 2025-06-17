@@ -1,0 +1,104 @@
+npm create vite@latest
+
+
+//LoginPage
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+const LoginPage = () => {
+  const navigate = useNavigate();
+
+  const [loginId, setLoginId] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const DEFAULT_LOGIN = "admin";
+  const DEFAULT_PASSWORD = "admin123";
+
+  useEffect(() => {
+    // Optional: Clear any previous session/local storage, etc.
+    setLoginId("");
+    setPassword("");
+    setError("");
+  }, []);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if (loginId === DEFAULT_LOGIN && password === DEFAULT_PASSWORD) {
+      // You can store auth info in localStorage/sessionStorage if needed
+      navigate("/dashboard");
+    } else {
+      setError("Invalid login ID or password");
+    }
+  };
+
+  return (
+    <div style={{ maxWidth: "400px", margin: "100px auto", padding: "20px", border: "1px solid #ccc", borderRadius: "8px" }}>
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <div style={{ marginBottom: "10px" }}>
+          <label>Login ID:</label><br />
+          <input
+            type="text"
+            value={loginId}
+            onChange={(e) => setLoginId(e.target.value)}
+            required
+          />
+        </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label>Password:</label><br />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
+};
+
+export default LoginPage;
+
+
+
+
+//dashboard
+import React from "react";
+
+const Dashboard = () => {
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>Welcome to the Dashboard!</h1>
+      <p>You are logged in successfully.</p>
+    </div>
+  );
+};
+
+export default Dashboard;
+
+
+
+
+//app
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./LoginPage";
+import Dashboard from "./Dashboard";
+
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
