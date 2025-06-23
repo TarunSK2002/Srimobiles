@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "5c8b1cff-d72c-438a-bd37-ef50dfe29703",
+		"name": "Sri Mobiles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "40002450"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "AddAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"admin123\",\r\n  \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/admin-register"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"admin123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Auth Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/auth/all-users"
+					},
+					"response": []
+				},
+				{
+					"name": "AddCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"Tarun\",\r\n  \"password\": \"Tarun123\",\r\n  \"role\": \"customer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/register"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Pages",
+			"item": [
+				{
+					"name": "Add Products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>Name</th>\r",
+									"        <th>Image</th>\r",
+									"        <th>Actual Price</th>\r",
+									"        <th>Measurement Unit</th>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>{{response.productData.name}}</td>\r",
+									"        <td>{{response.productData.image}}</td>\r",
+									"        <td>{{response.productData.actual_price}}</td>\r",
+									"        <td>{{response.productData.measurement_unit}}</td>\r",
+									"    </tr>\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return { response: pm.response.json() }\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// {\r\n//   \"name\": \"Cashew\",\r\n//   \"image\": \"cashew.jpg\",\r\n//   \"actual_price\": 450,\r\n//   \"measurement_unit\": \"kg\"\r\n// }\r\n\r\n{\r\n  \"name\": \"Almonds\",\r\n  \"actual_price\": 250,\r\n  \"measurement_unit\": \"Kg\",\r\n  \"stock\": 50,\r\n  \"image\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...\"  // sample Base64\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/products/add"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/products/all"
+					},
+					"response": []
+				},
+				{
+					"name": "AddDealer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n//   \"dealer_id\": ,\r\n  \"name\": \"Tarun_sk\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/dealers/add"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dealer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/dealers/all"
+					},
+					"response": []
+				},
+				{
+					"name": "AddPurchases",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"product_id\": 1000,\r\n  \"product_name\": \"Cashew\",\r\n  \"dealer_id\": 2001,\r\n  \"dealer_name\": \"Premium Nuts Supplier\",\r\n  \"quantity\": 20,\r\n  \"purchase_price\": 400\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/purchases/add"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Purchase",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/purchases/all"
+					},
+					"response": []
+				},
+				{
+					"name": "AddOffers",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Summer Sale Banner\",\r\n  \"image\": \"https://example.com/images/summer-sale.jpg\",\r\n  \"description\": \"Get up to 50% off on selected items!\",\r\n  \"start_date\": \"2025-06-01\",\r\n  \"end_date\": \"2025-06-30\",\r\n  \"is_active\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/offers/add"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

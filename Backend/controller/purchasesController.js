@@ -8,7 +8,10 @@ exports.addPurchase = async (req, res) => {
     return res.status(400).json({ error: "Missing required purchase fields" });
   }
 
+
+
   try {
+    console.log("trying to insert")
     await db.query(
       `INSERT INTO purchases (product_id, product_name, dealer_id, dealer_name, quantity, purchase_price)
        VALUES (?, ?, ?, ?, ?, ?)`,
