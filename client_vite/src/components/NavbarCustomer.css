@@ -1,0 +1,31 @@
+/* src/components/NavbarCustomer.css */
+
+.navbar-customer {
+  background-color: #fff;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-customer .logo {
+  font-weight: bold;
+  font-size: 24px;
+  color: #1890ff;
+}
+
+.navbar-customer .nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-customer .nav-links a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar-customer .nav-links a:hover {
+  color: #1890ff;
+}
